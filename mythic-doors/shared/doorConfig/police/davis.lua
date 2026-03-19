@@ -1,110 +1,72 @@
 addDoorsListToConfig({
-    -- Davis PD
+    -- Paleto Bay PD
 
-    --Front Left Stair Doors
     {
         id = "dpd_front_1",
         double = "dpd_front_2",
-        model = 964838196,
-        coords = vector3(379.293, -1591.917, 29.462),
+        model = 1670919150,
+        coords = vector3(379.78, -1592.61, 30.2),
         locked = true,
         autoRate = 6.0,
         restricted = {
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
             { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-            { type = 'job', job = 'ems', workplace = 'safd', gradeLevel = 0, jobPermission = false, reqDuty = true },
         },
     },
     {
         id = "dpd_front_2",
         double = "dpd_front_1",
-        model = 964838196,
-        coords = vector3(377.623, -1593.907, 29.462),
+        model = 618295057,
+        coords = vector3(381.78, -1594.28, 30.2),
         locked = true,
         autoRate = 6.0,
         restricted = {
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
             { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-            { type = 'job', job = 'ems', workplace = 'safd', gradeLevel = 0, jobPermission = false, reqDuty = true },
         },
     },
 
-    --Main Entrance Door
-    {
-        id = "dpd_front_enterance",
-        model = 964838196,
-        coords = vector3(371.655, -1590.092, 29.458),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-            { type = 'job', job = 'ems', workplace = 'safd', gradeLevel = 0, jobPermission = false, reqDuty = true },
-        },
-    },
-
-    --Front Right Doors
-    {
-        id = "dpd_frontright_1",
-        double = "dpd_frontright_2",
-        model = 964838196,
-        coords = vector3(370.331, -1587.919, 29.462),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-            { type = 'job', job = 'ems', workplace = 'safd', gradeLevel = 0, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_frontright_2",
-        double = "dpd_frontright_1",
-        model = 964838196,
-        coords = vector3(372.001, -1585.929, 29.462),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-            { type = 'job', job = 'ems', workplace = 'safd', gradeLevel = 0, jobPermission = false, reqDuty = true },
-        },
-    },
-
-    --Parking Lot Rear Doors
     {
         id = "dpd_rear_1",
         double = "dpd_rear_2",
-        model = 1182912693,
-        coords = vector3(368.211, -1608.218, 29.453),
+        model = 618295057,
+        coords = vector3(369.52, -1614.2, 30.2),
         locked = true,
         autoRate = 6.0,
         restricted = {
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
             { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-            { type = 'job', job = 'ems', workplace = 'safd', gradeLevel = 0, jobPermission = false, reqDuty = true },
         },
     },
-
     {
         id = "dpd_rear_2",
         double = "dpd_rear_1",
-        model = -1020933633,
-        coords = vector3(369.895, -1606.211, 29.453),
+        model = 1670919150,
+        coords = vector3(371.51, -1615.87, 30.2),
         locked = true,
         autoRate = 6.0,
         restricted = {
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
             { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-            { type = 'job', job = 'ems', workplace = 'safd', gradeLevel = 0, jobPermission = false, reqDuty = true },
         },
     },
 
-    --Sheriff Door
     {
         id = "dpd_command_1",
-        model = 964838196,
-        coords = vector3(360.718, -1598.347, 32.660),
+        double = "dpd_command_2",
+        model = -425870000,
+        coords = vector3(361.61, -1594.33, 31.14),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = 'job', job = 'police', workplace = false, gradeLevel = 60, jobPermission = false, reqDuty = false },
+        },
+    },
+    {
+        id = "dpd_command_2",
+        double = "dpd_command_1",
+        model = -425870000,
+        coords = vector3(363.15, -1592.5, 31.14),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -112,47 +74,20 @@ addDoorsListToConfig({
         },
     },
 
-    --Undersheriff Door
     {
-        id = "dpd_seccommand_2",
-        model = 964838196,
-        coords = vector3(356.401, -1598.089, 32.668),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 60, jobPermission = false, reqDuty = false },
-        },
-    },
-
-    --Evidence Room
-    {
-        id = "dpd_evidence",
-        model = 963839001,
-        coords = vector3(369.809, -1605.280, 32.668),
+        id = "dpd_office_2",
+        model = -425870000,
+        coords = vector3(363.24, -1589.21, 31.14),
         locked = true,
         autoRate = 6.0,
         restricted = {
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
         },
     },
-
-    --Break Room
     {
-        id = "dpd_breakroom",
-        model = 964838196,
-        coords = vector3(373.377, -1602.926, 32.667),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-        },
-    },
-
-    --Roof Doors
-    {
-        id = "dpd_roof_1",
-        model = 631057723,
-        coords = vector3(376.384, -1599.344, 32.656),
+        id = "dpd_office_1",
+        model = -425870000,
+        coords = vector3(358.38, -1595.0, 31.14),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -161,9 +96,9 @@ addDoorsListToConfig({
     },
 
     {
-        id = "dpd_roof_2",
-        model = 1831357345,
-        coords = vector3(378.628, -1602.469, 37.095),
+        id = "dpd_reception",
+        model = -425870000,
+        coords = vector3(382.82, -1599.03, 30.14),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -171,11 +106,20 @@ addDoorsListToConfig({
         },
     },
 
-    --Training Room
     {
-        id = "dpd_training",
-        model = 964838196,
-        coords = vector3(376.418, -1597.635, 29.453),
+        id = "dpd_stairs_1",
+        model = -1335406364,
+        coords = vector3(384.43, -1601.96, 30.14),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
+        },
+    },
+    {
+        id = "dpd_stairs_2",
+        model = -1335406364,
+        coords = vector3(374.64, -1613.63, 30.14),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -183,11 +127,10 @@ addDoorsListToConfig({
         },
     },
 
-    --Locker Room Doors
     {
-        id = "dpd_lockers1",
-        model = 631057723,
-        coords = vector3(368.639, -1583.877, 29.476),
+        id = "dpd_observation",
+        model = -1335406364,
+        coords = vector3(375.54, -1608.15, 25.54),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -196,9 +139,9 @@ addDoorsListToConfig({
         },
     },
     {
-        id = "dpd_lockers2",
-        model = 631057723,
-        coords = vector3(361.476, -1588.921, 29.463),
+        id = "dpd_interrogation",
+        model = -728950481,
+        coords = vector3(371.96, -1605.14, 25.55),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -207,11 +150,10 @@ addDoorsListToConfig({
         },
     },
 
-    --Mugshot Room
     {
         id = "dpd_mugshot",
-        model = -1207336640,
-        coords = vector3(356.884, -1600.518, 29.452),
+        model = -1335406364,
+        coords = vector3(379.17, -1603.83, 25.54),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -220,11 +162,10 @@ addDoorsListToConfig({
         },
     },
 
-    --Interrogation Rooms
     {
-        id = "dpd_interrogation1",
-        model = 963839001,
-        coords = vector3(356.921, -1605.756, 29.457),
+        id = "dpd_lockers",
+        model = -1335406364,
+        coords = vector3(363.89, -1595.47, 25.55),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -232,31 +173,9 @@ addDoorsListToConfig({
         },
     },
     {
-        id = "dpd_interrogation2",
-        model = 963839001,
-        coords = vector3(352.710, -1602.222, 29.457),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-        },
-    },
-
-    --Armory Doors
-    {
-        id = "dpd_armoury1",
-        model = 964838196,
-        coords = vector3(364.981, -1602.045, 29.464),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_armoury2",
-        model = 631057723,
-        coords = vector3(363.608, -1600.339, 29.495),
+        id = "pbpd_armoury",
+        model = -1335406364,
+        coords = vector3(367.12, -1601.08, 25.54),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -264,12 +183,11 @@ addDoorsListToConfig({
         },
     },
 
-    --Left Side Armory Doors
     {
         id = "dpd_cdouble_1",
         double = "dpd_cdouble_2",
-        model = 964838196,
-        coords = vector3(369.168, -1604.677, 29.451),
+        model = -1335406364,
+        coords = vector3(370.41, -1598.59, 25.55),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -280,8 +198,8 @@ addDoorsListToConfig({
     {
         id = "dpd_cdouble_2",
         double = "dpd_cdouble_1",
-        model = 964838196,
-        coords = vector3(367.181, -1603.010, 29.451),
+        model = -1335406364,
+        coords = vector3(368.86, -1600.43, 25.55),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -290,37 +208,10 @@ addDoorsListToConfig({
         },
     },
 
-    --Right Side Lockers Doors
-    {
-        id = "dpd_rightcdouble_1",
-        double = "dpd_rightcdouble_2",
-        model = 964838196,
-        coords = vector3(360.279, -1592.268, 29.455),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_rightcdouble_2",
-        double = "dpd_rightcdouble_1",
-        model = 964838196,
-        coords = vector3(361.946, -1590.282, 29.455),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-
-    --Cells
     {
         id = "dpd_cell_1",
-        model = -397840766,
-        coords = vector3(362.859, -1610.046, 29.464),
+        model = -674638964,
+        coords = vector3(369.07, -1605.69, 29.94),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -329,8 +220,8 @@ addDoorsListToConfig({
     },
     {
         id = "dpd_cell_2",
-        model = -397840766,
-        coords = vector3(359.957, -1610.086, 29.464),
+        model = -674638964,
+        coords = vector3(368.27, -1605.02, 29.94),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -339,21 +230,8 @@ addDoorsListToConfig({
     },
     {
         id = "dpd_cell_3",
-        model = -397840766,
-        coords = vector3(358.796, -1609.106, 29.464),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = true },
-        },
-    },
-
-    --Cell Entrance Doors
-    {
-        id = "dpd_cellenterance_1",
-        double = "dpd_cellenterance_2",
-        model = 631057723,
-        coords = vector3(364.645, -1607.058, 29.460),
+        model = -674638964,
+        coords = vector3(375.88, -1599.11, 25.34),
         locked = true,
         autoRate = 6.0,
         restricted = {
@@ -361,48 +239,32 @@ addDoorsListToConfig({
         },
     },
     {
-        id = "dpd_cellenterance_2",
-        double = "dpd_cellenterance_1",
-        model = 631057723,
-        coords = vector3(362.653, -1605.386, 29.460),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-
-    --Right Side Enterance Doors
-    {
-        id = "dpd_rightdoorenter_1",
-        double = "dpd_rightdoorenter_2",
-        model = 1182912693,
-        coords = vector3(354.909, -1592.876, 29.445),
+        id = "dpd_cell_4",
+        model = -674638964,
+        coords = vector3(375.08, -1598.43, 25.34),
         locked = true,
         autoRate = 6.0,
         restricted = {
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = true },
         },
     },
-    {
-        id = "dpd_rightdoorenter_2",
-        double = "dpd_rightdoorenter_1",
-        model = -1020933633,
-        coords = vector3(353.224, -1594.883, 29.445),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
 
-    --Gate
     {
         id = "dpd_gate",
         model = 1286535678,
-        coords = vector3(397.885, -1607.386, 28.3416),
+        coords = vector3(397.88, -1607.38, 28.34),
+        locked = true,
+        --autoRate = 6.0,
+        special = true,
+        restricted = {
+            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
+            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
+        },
+    },
+    {
+        id = "dpd_gate2",
+        model = -1483471451,
+        coords = vector3(413.36, -1620.04, 28.34),
         locked = true,
         --autoRate = 6.0,
         special = true,
@@ -410,113 +272,15 @@ addDoorsListToConfig({
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
         },
     },
-
-    --Other Doors
     {
-        id = "dpd_outsidechainlink1",
-        model = -1156020871,
-        coords = vector3(391.860, -1636.070, 29.974),
+        id = "dpd_gate3",
+        model = -1483471451,
+        coords = vector3(418.29, -1651.39, 28.29),
         locked = true,
-        autoRate = 6.0,
+        --autoRate = 6.0,
+        special = true,
         restricted = {
             { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_chainlink2",
-        double = "dpd_chainlink1",
-        model = -1156020871,
-        coords = vector3(343.879, -1605.381, 29.905),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_chainlink1",
-        double = "dpd_chainlink2",
-        model = -1156020871,
-        coords = vector3(346.106, -1602.838, 29.905),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_celldoor2",
-        double = "dpd_celldoor3",
-        model = 631057723,
-        coords = vector3(359.449, -1603.579, 29.449),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_celldoor3",
-        double = "dpd_celldoor2",
-        model = 631057723,
-        coords = vector3(357.777, -1605.572, 29.449),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_extradoor2",
-        double = "dpd_extradoor3",
-        model = -1207336640,
-        coords = vector3(352.257, -1596.633, 29.464),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_extradoor3",
-        double = "dpd_extradoor2",
-        model = 963839001,
-        coords = vector3(354.246, -1598.300, 29.464),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_extradoor4",
-        double = "dpd_extradoor5",
-        model = 964838196,
-        coords = vector3(356.320, -1591.795, 29.453),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
-        },
-    },
-    {
-        id = "dpd_extradoor5",
-        double = "dpd_extradoor4",
-        model = 964838196,
-        coords = vector3(358.309, -1593.463, 29.453),
-        locked = true,
-        autoRate = 6.0,
-        restricted = {
-            { type = 'job', job = 'police', workplace = false, gradeLevel = 0, jobPermission = false, reqDuty = false },
-            { type = 'job', job = 'government', workplace = 'doj', gradeLevel = 10, jobPermission = false, reqDuty = true },
         },
     },
 })

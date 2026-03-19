@@ -2,32 +2,32 @@ addDoorsListToConfig({
     {
         id = 'digital_den_1',
         double = 'digital_den_2',
-        model = 1153990546,
-        coords = vector3(-655.501, -880.507, 24.928),
+        model = 26598002,
+        coords = vector3(392.96, -830.82, 29.57),
         locked = true,
         autoRate = 6.0,
         restricted = {
-            { type = 'job', job = 'digitalden_seoul', gradeLevel = 0, reqDuty = false },
+            { type = 'job', job = 'digitalden', gradeLevel = 0, reqDuty = false },
         },
     },
     {
         id = 'digital_den_2',
         double = 'digital_den_1',
-        model = 1153990546,
-        coords = vector3(-655.501, -878.503, 24.928),
+        model = -445668826,
+        coords = vector3(391.76, -832.02, 29.57),
         locked = true,
         autoRate = 6.0,
         restricted = {
-            { type = 'job', job = 'digitalden_seoul', gradeLevel = 0, reqDuty = false },
+            { type = 'job', job = 'digitalden', gradeLevel = 0, reqDuty = false },
         },
     },
     {
-        model = -1687047623,
-        coords = vector3(-667.671, -875.302, 24.812),
+        model = -2023754432,
+        coords = vector3(381.58, -822.96, 29.45),
         locked = true,
         autoRate = 6.0,
         restricted = {
-            { type = 'job', job = 'digitalden_seoul', gradeLevel = 0, reqDuty = true },
+            { type = 'job', job = 'digitalden', gradeLevel = 0, reqDuty = false },
         },
     },
 })

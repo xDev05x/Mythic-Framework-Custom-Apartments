@@ -2,6 +2,29 @@
 
 addDoorsListToConfig({
     {
+        id = "casino_enter_1",
+        double = "casino_enter_2",
+        model = 21324050,
+        coords = vector3(960.27, 32.65, 72.4),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+    {
+        id = "casino_enter_2",
+        double = "casino_enter_1",
+        model = 21324050,
+        coords = vector3(958.14, 33.98, 72.4),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+
+    {
         id = "casino_management_1",
         double = "casino_management_2",
         model = 680601509,
@@ -119,6 +142,76 @@ addDoorsListToConfig({
         double = "casino_penthouse_3",
         model = -1074495927,
         coords = vector3(981.18, 61.15, 116.29),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+
+
+    {
+        id = "casino_lobby_1",
+        double = "casino_lobby_2",
+        model = 21324050,
+        coords = vector3(927.146, 49.190, 81.106),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+    {
+        id = "casino_lobby_2",
+        double = "casino_lobby_1",
+        model = 21324050,
+        coords = vector3(926.561, 48.175, 81.106),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+
+    {
+        id = "casino_lobby_3",
+        double = "casino_lobby_4",
+        model = 21324050,
+        coords = vector3(925.768, 46.839, 81.106),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+    {
+        id = "casino_lobby_4",
+        double = "casino_lobby_3",
+        model = 21324050,
+        coords = vector3(925.204, 45.626, 81.101),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+
+    {
+        id = "casino_lobby_5",
+        double = "casino_lobby_6",
+        model = 21324050,
+        coords = vector3(924.057, 44.610, 81.106),
+        locked = true,
+        autoRate = 6.0,
+        restricted = {
+            { type = "job", job = "casino", jobPermission = "CASINO_LOCK_DOORS", reqDuty = false },
+        },
+    },
+    {
+        id = "casino_lobby_6",
+        double = "casino_lobby_5",
+        model = 21324050,
+        coords = vector3(923.658, 43.209, 81.106),
         locked = true,
         autoRate = 6.0,
         restricted = {

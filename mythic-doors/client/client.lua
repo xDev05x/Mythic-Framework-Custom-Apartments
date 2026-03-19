@@ -29,6 +29,7 @@ function RetrieveComponents()
 	Sounds = exports["mythic-base"]:FetchComponent("Sounds")
 	Properties = exports["mythic-base"]:FetchComponent("Properties")
 	Doors = exports["mythic-base"]:FetchComponent("Doors")
+	Minigame = exports["mythic-base"]:FetchComponent("Minigame")
 end
 
 AddEventHandler("Core:Shared:Ready", function()
@@ -49,6 +50,7 @@ AddEventHandler("Core:Shared:Ready", function()
 		"Sounds",
 		"Doors",
 		"Properties",
+		"Minigame",
 	}, function(error)
 		if #error > 0 then
 			return
@@ -71,9 +73,13 @@ function InitDoors()
 	initLoaded = true
 	DOORS_STATE = {}
 	ELEVATOR_STATE = {}
-	Callbacks:ServerCallback('Doors:Fetch', {}, function(fetchedDoors, fetchedElevators)
+	Callbacks:ServerCallback('Doors:Fetch', {}, function(fetchedDoors, fetchedElevators, serverDoorConfig, serverElevatorConfig)
+		local doorConfig = serverDoorConfig or _doorConfig
+		local elevatorConfig = serverElevatorConfig or _elevatorConfig
 
-		for k, v in ipairs(_doorConfig) do
+		for k, v in ipairs(doorConfig) do
+			if not fetchedDoors[k] then break end
+
 			if v.id and not DOORS_IDS[v.id] then
 				DOORS_IDS[v.id] = k
 			end
@@ -81,6 +87,10 @@ function InitDoors()
 			local doorData = v
 			doorData.id = v.id or k
 			doorData.doorId = k
+
+			if type(doorData.coords) ~= 'vector3' then
+				doorData.coords = vector3(doorData.coords.x + 0.0, doorData.coords.y + 0.0, doorData.coords.z + 0.0)
+			end
 
 			doorData.locked = fetchedDoors[k].locked
 
@@ -108,7 +118,7 @@ function InitDoors()
 			DOORS_STATE[k] = doorData
 		end
 
-		for k, v in ipairs(_elevatorConfig) do
+		for k, v in ipairs(elevatorConfig) do
 			for k2, v2 in pairs(v.floors) do
 				v2.locked = fetchedElevators[k].floors[k2].locked
 			end
@@ -206,15 +216,15 @@ DOORS = {
 
 			for k, v in ipairs(doorData.restricted) do
 				if v.type == 'character' then
-    				local a = tonumber(stateId) or stateId
-    				local b = tonumber(v.SID) or v.SID
-
-    				if a == b then
-        		return true
-    		end
+					if stateId == v.SID then
+						return true
+					end
 				elseif v.type == 'job' then
 					if v.job then
-						if Jobs.Permissions:HasJob(v.job, v.workplace, v.grade, v.gradeLevel, v.reqDuty, v.jobPermission) then
+						local wp = (v.workplace and v.workplace ~= '' and v.workplace ~= 'false') and v.workplace or false
+						local gr = (v.grade and v.grade ~= '' and v.grade ~= 'false') and v.grade or false
+						local gl = (v.gradeLevel and tonumber(v.gradeLevel) and tonumber(v.gradeLevel) > 0) and tonumber(v.gradeLevel) or false
+						if Jobs.Permissions:HasJob(v.job, wp, gr, gl, v.reqDuty, v.jobPermission) then
 							return true
 						end
 					elseif v.jobPermission then
@@ -266,6 +276,8 @@ function StartShowingDoorInfo(doorId)
 	Action:Show(actionMsg)
 end
 
+_nearSpecialDoor = false
+
 function StartCharacterThreads()
 	ResetLockpickAttempts()
 	GLOBAL_PED = PlayerPedId()
@@ -275,6 +287,51 @@ function StartCharacterThreads()
 			GLOBAL_PED = PlayerPedId()
 			Wait(5000)
 		end
+	end)
+
+	CreateThread(function()
+		while LocalPlayer.state.loggedIn do
+			if DOORS_STATE then
+				local pedCoords = GetEntityCoords(GLOBAL_PED)
+				local closestDoor = false
+				local closestDist = 999
+				for k, v in pairs(DOORS_STATE) do
+					if v.special and v.coords then
+						local dist = #(pedCoords - v.coords)
+						local maxDist = v.maxDist or 2.0
+						if dist <= maxDist and dist < closestDist then
+							closestDoor = k
+							closestDist = dist
+						end
+					end
+				end
+
+				if closestDoor and closestDoor ~= _nearSpecialDoor then
+					_nearSpecialDoor = closestDoor
+					if CheckDoorAuth(closestDoor) then
+						_lookingAtDoor = closestDoor
+						_lookingAtDoorCoords = DOORS_STATE[closestDoor].coords
+						_lookingAtDoorRadius = DOORS_STATE[closestDoor].maxDist or 2.0
+						_lookingAtDoorSpecial = true
+						StartShowingDoorInfo(closestDoor)
+					end
+				elseif closestDoor and closestDoor == _nearSpecialDoor then
+					if not _showingDoorInfo and CheckDoorAuth(closestDoor) then
+						_lookingAtDoor = closestDoor
+						StartShowingDoorInfo(closestDoor)
+					end
+				elseif not closestDoor and _nearSpecialDoor then
+					if _lookingAtDoor == _nearSpecialDoor then
+						_lookingAtDoor = false
+						_lookingAtDoorCoords = nil
+						StopShowingDoorInfo()
+					end
+					_nearSpecialDoor = false
+				end
+			end
+			Wait(500)
+		end
+		_nearSpecialDoor = false
 	end)
 end
 
@@ -320,7 +377,7 @@ AddEventHandler('Targeting:Client:TargetChanged', function(entity)
 				end
 			end
 		end
-	elseif _lookingAtDoor then
+	elseif _lookingAtDoor and not _nearSpecialDoor then
 		_lookingAtDoor = false
 		_lookingAtDoorCoords = nil
 		StopShowingDoorInfo()
@@ -347,6 +404,7 @@ end)
 
 RegisterNetEvent("Characters:Client:Logout")
 AddEventHandler("Characters:Client:Logout", function()
+	_nearSpecialDoor = false
 	StopShowingDoorInfo()
 end)
 
@@ -374,7 +432,6 @@ RegisterNetEvent("Doors:Client:UpdateState", function(door, state)
 	end
 end)
 
-
 RegisterNetEvent("Doors:Client:UpdateRestriction", function(doorId, restricted)
 	if type(doorId) == "string" then
 		doorId = DOORS_IDS[doorId]
@@ -390,7 +447,6 @@ RegisterNetEvent("Doors:Client:UpdateRestriction", function(doorId, restricted)
 		_doorConfig[doorId].restricted = restricted
 	end
 end)
-
 
 RegisterNetEvent("Doors:Client:SetForcedOpen", function(door)
 	if DOORS_STATE and DOORS_STATE[door] then
@@ -424,4 +480,179 @@ end
 
 RegisterNetEvent("Job:Client:DutyChanged", function(state)
 	_newDuty = state
+end)
+
+RegisterNetEvent('Doors:Client:AddDynamicDoor', function(index, door)
+	if not DOORS_STATE then return end
+
+	if door.id and not DOORS_IDS[door.id] then
+		DOORS_IDS[door.id] = index
+	end
+
+	local doorData = door
+	doorData.doorId = index
+
+	if type(doorData.coords) ~= 'vector3' then
+		doorData.coords = vector3(doorData.coords.x + 0.0, doorData.coords.y + 0.0, doorData.coords.z + 0.0)
+	end
+
+	AddDoorToSystem(index, doorData.model, doorData.coords.x, doorData.coords.y, doorData.coords.z)
+
+	if type(doorData.autoRate) == "number" and doorData.autoRate > 0.0 then
+		DoorSystemSetAutomaticRate(index, doorData.autoRate + 0.0, 0, 1)
+	end
+
+	if type(doorData.autoDist) == "number" and doorData.autoDist > 0.0 then
+		DoorSystemSetAutomaticDistance(index, doorData.autoDist + 0.0, 0, 1)
+	end
+
+	DoorSystemSetDoorState(index, doorData.locked and 1 or 0)
+
+	if doorData.holdOpen then
+		DoorSystemSetHoldOpen(index, true)
+	end
+
+	DOORS_STATE[index] = doorData
+end)
+
+RegisterNetEvent('Doors:Client:UpdateDynamicDoor', function(index, door)
+	if not DOORS_STATE or not DOORS_STATE[index] then return end
+
+	local oldDoor = DOORS_STATE[index]
+	if oldDoor.id and DOORS_IDS[oldDoor.id] then
+		DOORS_IDS[oldDoor.id] = nil
+	end
+	if door.id and not DOORS_IDS[door.id] then
+		DOORS_IDS[door.id] = index
+	end
+
+	oldDoor.id = door.id
+	oldDoor.locked = door.locked
+	oldDoor.canLockpick = door.canLockpick
+	oldDoor.holdOpen = door.holdOpen
+	oldDoor.maxDist = door.maxDist
+	oldDoor.autoRate = door.autoRate
+	oldDoor.autoDist = door.autoDist
+	oldDoor.double = door.double
+	oldDoor.special = door.special
+	oldDoor.restricted = door.restricted
+
+	DoorSystemSetDoorState(index, door.locked and 1 or 0)
+
+	if type(door.autoRate) == "number" and door.autoRate > 0.0 then
+		DoorSystemSetAutomaticRate(index, door.autoRate + 0.0, 0, 1)
+	end
+
+	if door.holdOpen then
+		DoorSystemSetHoldOpen(index, true)
+	else
+		DoorSystemSetHoldOpen(index, false)
+	end
+
+end)
+
+RegisterNetEvent('Doors:Client:RemoveDynamicDoor', function(index)
+	if not DOORS_STATE or not DOORS_STATE[index] then return end
+
+	local door = DOORS_STATE[index]
+	if door.id and DOORS_IDS[door.id] then
+		DOORS_IDS[door.id] = nil
+	end
+
+	RemoveDoorFromSystem(index)
+	DOORS_STATE[index] = nil
+end)
+
+RegisterNetEvent('Doors:Client:AddDynamicElevator', function(index, elevator)
+	if not ELEVATOR_STATE then ELEVATOR_STATE = {} end
+
+	for floorId, floorData in pairs(elevator.floors) do
+		if floorData.coords and type(floorData.coords) ~= 'vector4' then
+			floorData.coords = vector4(floorData.coords.x + 0.0, floorData.coords.y + 0.0, floorData.coords.z + 0.0, floorData.coords.w + 0.0)
+		end
+		if floorData.zone and floorData.zone.center and type(floorData.zone.center) ~= 'vector3' then
+			floorData.zone.center = vector3(floorData.zone.center.x + 0.0, floorData.zone.center.y + 0.0, floorData.zone.center.z + 0.0)
+		end
+	end
+
+	ELEVATOR_STATE[index] = elevator
+
+	if elevator.floors then
+		for floorId, floorData in pairs(elevator.floors) do
+			if floorData.zone then
+				if #floorData.zone > 0 then
+					for j, b in ipairs(floorData.zone) do
+						CreateElevatorFloorTarget(b, index, floorId, j)
+					end
+				else
+					CreateElevatorFloorTarget(floorData.zone, index, floorId, 1)
+				end
+			end
+		end
+	end
+end)
+
+RegisterNetEvent('Doors:Client:UpdateDynamicElevator', function(index, elevator)
+	if not ELEVATOR_STATE then return end
+
+	local oldElevator = ELEVATOR_STATE[index]
+	if oldElevator and oldElevator.floors then
+		for floorId, floorData in pairs(oldElevator.floors) do
+			if floorData.zone then
+				if #floorData.zone > 0 then
+					for j, _ in ipairs(floorData.zone) do
+						Targeting.Zones:RemoveZone('elevators_' .. index .. '_level_' .. floorId .. '_' .. j)
+					end
+				else
+					Targeting.Zones:RemoveZone('elevators_' .. index .. '_level_' .. floorId .. '_1')
+				end
+			end
+		end
+	end
+
+	for floorId, floorData in pairs(elevator.floors) do
+		if floorData.coords and type(floorData.coords) ~= 'vector4' then
+			floorData.coords = vector4(floorData.coords.x + 0.0, floorData.coords.y + 0.0, floorData.coords.z + 0.0, floorData.coords.w + 0.0)
+		end
+		if floorData.zone and floorData.zone.center and type(floorData.zone.center) ~= 'vector3' then
+			floorData.zone.center = vector3(floorData.zone.center.x + 0.0, floorData.zone.center.y + 0.0, floorData.zone.center.z + 0.0)
+		end
+	end
+
+	ELEVATOR_STATE[index] = elevator
+
+	if elevator.floors then
+		for floorId, floorData in pairs(elevator.floors) do
+			if floorData.zone then
+				if #floorData.zone > 0 then
+					for j, b in ipairs(floorData.zone) do
+						CreateElevatorFloorTarget(b, index, floorId, j)
+					end
+				else
+					CreateElevatorFloorTarget(floorData.zone, index, floorId, 1)
+				end
+			end
+		end
+	end
+end)
+
+RegisterNetEvent('Doors:Client:RemoveDynamicElevator', function(index)
+	if not ELEVATOR_STATE or not ELEVATOR_STATE[index] then return end
+
+	local elevator = ELEVATOR_STATE[index]
+	if elevator.floors then
+		for floorId, floorData in pairs(elevator.floors) do
+			if floorData.zone then
+				if #floorData.zone > 0 then
+					for j, _ in ipairs(floorData.zone) do
+						Targeting.Zones:RemoveZone('elevators_' .. index .. '_level_' .. floorId .. '_' .. j)
+					end
+				else
+					Targeting.Zones:RemoveZone('elevators_' .. index .. '_level_' .. floorId .. '_1')
+				end
+			end
+		end
+	end
+
+	ELEVATOR_STATE[index] = nil
 end)

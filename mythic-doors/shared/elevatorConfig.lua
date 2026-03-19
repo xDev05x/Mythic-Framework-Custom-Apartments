@@ -231,7 +231,7 @@ _elevatorConfig = {
                     length = 3.0,
                     width = 3.8,
                     heading = 0,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 22.78,
                     maxZ = 25.58
                 }
@@ -244,7 +244,7 @@ _elevatorConfig = {
                     length = 3.0,
                     width = 3.8,
                     heading = 0,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 27.06,
                     maxZ = 29.86
                 }
@@ -257,7 +257,7 @@ _elevatorConfig = {
                     length = 3.0,
                     width = 3.8,
                     heading = 0,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 31.34,
                     maxZ = 34.14
                 },
@@ -279,7 +279,7 @@ _elevatorConfig = {
                     length = 3.0,
                     width = 3.8,
                     heading = 0,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 22.78,
                     maxZ = 25.58
                 }
@@ -293,7 +293,7 @@ _elevatorConfig = {
                     length = 3.0,
                     width = 3.8,
                     heading = 0,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 27.06,
                     maxZ = 29.86
                 }
@@ -307,7 +307,7 @@ _elevatorConfig = {
                     length = 3.0,
                     width = 3.8,
                     heading = 0,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 31.34,
                     maxZ = 34.14
                 },
@@ -330,7 +330,7 @@ _elevatorConfig = {
                     length = 2.8,
                     width = 1.0,
                     heading = 144,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = -76.21,
                     maxZ = -73.61
                 },
@@ -344,7 +344,7 @@ _elevatorConfig = {
                     length = 2.4,
                     width = 2.0,
                     heading = 328,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 79.99,
                     maxZ = 82.39
                 },
@@ -357,7 +357,7 @@ _elevatorConfig = {
                     length = 2.4,
                     width = 0.4,
                     heading = 12,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 70.7,
                     maxZ = 73.1
                 },
@@ -371,7 +371,7 @@ _elevatorConfig = {
                     length = 2.8,
                     width = 1.0,
                     heading = 145,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 110.26,
                     maxZ = 112.86
                 },
@@ -385,7 +385,7 @@ _elevatorConfig = {
                     length = 2.4,
                     width = 0.6,
                     heading = 328,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 111.55,
                     maxZ = 113.95
                 },
@@ -399,7 +399,7 @@ _elevatorConfig = {
                     length = 2.4,
                     width = 0.6,
                     heading = 328,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 115.16,
                     maxZ = 117.56
                 },
@@ -422,7 +422,7 @@ _elevatorConfig = {
                     length = 2.2,
                     width = 1.0,
                     heading = 324,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = -75.41,
                     maxZ = -72.81
                 },
@@ -435,7 +435,7 @@ _elevatorConfig = {
                     length = 2.8,
                     width = 1,
                     heading = 239,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 79.99,
                     maxZ = 82.59
                 },
@@ -449,7 +449,7 @@ _elevatorConfig = {
                     length = 2.4,
                     width = 0.6,
                     heading = 148,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 74.06,
                     maxZ = 76.46
                 },
@@ -463,7 +463,7 @@ _elevatorConfig = {
                     length = 2.4,
                     width = 0.6,
                     heading = 328,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 111.55,
                     maxZ = 113.95
                 },
@@ -477,7 +477,7 @@ _elevatorConfig = {
                     length = 2.4,
                     width = 0.6,
                     heading = 238,
-                    ----debugPoly=true,
+                    --debugPoly=true,
                     minZ = 119.23,
                     maxZ = 121.63
                 },
